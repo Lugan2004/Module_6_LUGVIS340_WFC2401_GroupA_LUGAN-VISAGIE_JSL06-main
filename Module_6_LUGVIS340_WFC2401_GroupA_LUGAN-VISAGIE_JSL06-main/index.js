@@ -56,13 +56,39 @@ const menu = {
     // Create a list item for the order
     const orderItem = document.createElement('li');
     // Set the text content of the list item to the item name and price
-    orderItem.textContent = `${item.name} - R${item.price.toFixed(2)}`;
+    const itemText = `${item.name} - R${item.price.toFixed(2)}`;
+    orderItem.textContent = itemText;
+  
+    // Create a remove button
+    const removeButton = document.createElement('button');
+    removeButton.textContent = 'Remove';
+    removeButton.addEventListener('click', () => removeFromOrder(orderItem, item.price));
+  
+    // Append the remove button to the list item
+    orderItem.appendChild(removeButton);
+  
     // Append the list item to the order items list
     orderItemsList.appendChild(orderItem);
   
     // Calculate and update the total price
     const currentTotal = parseFloat(orderTotal.textContent.slice(1)) || 0;
     const newTotal = currentTotal + item.price;
+    // Update the text content of the order total element with the new total
+    orderTotal.textContent = `R${newTotal.toFixed(2)}`;
+  }
+  
+  // Function to remove an item from the order
+  function removeFromOrder(orderItem, itemPrice) {
+    // Get the order items list and the order total element from the HTML
+    const orderItemsList = document.getElementById('order-items');
+    const orderTotal = document.getElementById('order-total');
+  
+    // Remove the order item from the list
+    orderItemsList.removeChild(orderItem);
+  
+    // Calculate and update the total price
+    const currentTotal = parseFloat(orderTotal.textContent.slice(1)) || 0;
+    const newTotal = currentTotal - itemPrice;
     // Update the text content of the order total element with the new total
     orderTotal.textContent = `R${newTotal.toFixed(2)}`;
   }
