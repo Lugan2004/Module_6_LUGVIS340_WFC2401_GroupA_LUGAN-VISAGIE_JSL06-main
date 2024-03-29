@@ -26,7 +26,6 @@ body, h1, h2, p, ul {
   
   header p {
     font-size: 1.2rem;
-    
   }
   
   main {
@@ -44,7 +43,6 @@ body, h1, h2, p, ul {
   }
   
   #menu {
-    font-weight: bold;
     max-width: 60%;
     overflow-y: auto;
   }
@@ -60,6 +58,11 @@ body, h1, h2, p, ul {
     margin-bottom: 1.2rem;
     color: #333;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+  }
+  
+  #menu h3 {
+    font-weight: bold;
+    color: #007bff; /* Themed color for menu titles */
   }
   
   #menu ul, #order ul {
