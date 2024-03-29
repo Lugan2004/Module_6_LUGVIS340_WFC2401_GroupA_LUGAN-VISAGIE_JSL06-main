@@ -1,8 +1,17 @@
 // Sample menu data (Consider fetching this data from a server in a real-world scenario)
 const menu = {
-    Starters: ["Garlic Bread", "Bruschetta"],
-    MainCourses: ["Margherita Pizza", "Spaghetti Carbonara"],
-    Desserts: ["Tiramisu", "Cheesecake"]
+    Starters: [
+      { name: "Garlic Bread", price: 35 },
+      { name: "Bruschetta", price: 45 }
+    ],
+    MainCourses: [
+      { name: "Margherita Pizza", price: 75 },
+      { name: "Spaghetti Carbonara", price: 95 }
+    ],
+    Desserts: [
+      { name: "Tiramisu", price: 55 },
+      { name: "Cheesecake", price: 65 }
+    ]
   };
   
   // Function to display menu items by category
@@ -28,8 +37,8 @@ const menu = {
       for (const item of menu[category]) {
         // Create a list item element
         const itemElement = document.createElement('li');
-        // Set the text content of the list item element to the item name
-        itemElement.textContent = item;
+        // Set the text content of the list item element to the item name and price
+        itemElement.textContent = `${item.name} - R${item.price.toFixed(2)}`;
         // Attach a click event listener to the list item to add it to the order
         itemElement.addEventListener('click', () => addToOrder(item));
         // Append the list item to the list of items
@@ -39,24 +48,23 @@ const menu = {
   }
   
   // Callback function for adding an item to the order
-  function addToOrder(itemName) {
+  function addToOrder(item) {
     // Get the order items list and the order total element from the HTML
     const orderItemsList = document.getElementById('order-items');
     const orderTotal = document.getElementById('order-total');
   
     // Create a list item for the order
     const orderItem = document.createElement('li');
-    // Set the text content of the list item to the item name
-    orderItem.textContent = itemName;
+    // Set the text content of the list item to the item name and price
+    orderItem.textContent = `${item.name} - R${item.price.toFixed(2)}`;
     // Append the list item to the order items list
     orderItemsList.appendChild(orderItem);
   
     // Calculate and update the total price
-    // Assuming a fixed price of $5 per item for simplicity
     const currentTotal = parseFloat(orderTotal.textContent.slice(1)) || 0;
-    const newTotal = currentTotal + 5;
+    const newTotal = currentTotal + item.price;
     // Update the text content of the order total element with the new total
-    orderTotal.textContent = `$${newTotal.toFixed(2)}`;
+    orderTotal.textContent = `R${newTotal.toFixed(2)}`;
   }
   
   // Function to initialize the menu system
